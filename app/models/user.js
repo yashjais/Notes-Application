@@ -79,6 +79,18 @@ userSchema.statics.findByToken = function(token) {
     })
 }
 
+userSchema.statics.findByCredential = function(email) {
+    const User = this
+    return User.findOne({ email })
+            .then(function(user) {
+                if(!user) {
+                    return Promise.reject('user does not found')
+                } else {
+                    return Promise.resolve(user)
+                }
+            })
+}
+
 userSchema.statics.findByCredentials = function(email, password) {
     const User = this
     return User.findOne({ email })

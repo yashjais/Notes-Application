@@ -38,3 +38,16 @@ module.exports.logout = (req, res) => {
         .then(() => res.send('successfully logged out'))
         .catch(err => res.send(err))
 }
+
+module.exports.forgotPassword = (req, res) => {
+    const body = req.body
+    User.findByCredential(body.email)
+        .then(user => {
+            // write code that how we will store the token in the database and when the user will hit the certain link we will verify that token and reset the password.
+            user.generateToken()
+            // res.setHeader('x-auth', token).send({})  //_.pick(user, ['_id', 'username', 'email'])))
+                .then(token => res.setHeader('x-auth', token).send({}))
+                .catch(err => res.send(err))
+        })
+        .catch(err => res.send(err))    
+}
