@@ -20,6 +20,10 @@ const noteSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category', // which model we are refering to
     },
+    pin: {
+        type: Boolean,
+        default: false
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref : 'User'

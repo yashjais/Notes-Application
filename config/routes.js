@@ -10,6 +10,7 @@ router.post('/users/login', usersController.login)
 router.post('/users/account',authenticateUser, usersController.account)
 router.post('/users/logout', authenticateUser, usersController.logout)
 router.post('/users/forgot-password', usersController.forgotPassword)
+router.get('/users/forgot-password', usersController.revivePassword)
 
 router.get('/notes', authenticateUser, notesController.list) 
 router.get('/notes/:id', authenticateUser, notesController.show) 
