@@ -10,6 +10,7 @@ import NotesAdd from './components/notes/Add'
 import NotesEdit from './components/notes/Edit'
 
 import CategoriesList from './components/categories/List'
+import CategoriesAdd from './components/categories/Add'
  
 function App(props) {
     const handleLogout = () => {
@@ -48,7 +49,8 @@ function App(props) {
             <Route path="/notes/edit/:id" component={NotesEdit} exact={true} />
             <Route path="/notes/:id" component={NotesShow} />
 
-            <Route path="/categories" component={CategoriesList} />
+            <Route path="/categories" component={CategoriesList} exact={true}/>
+            <Route path="/categories/add" component={CategoriesAdd} />
             </Switch>
 
             </BrowserRouter>

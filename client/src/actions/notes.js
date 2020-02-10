@@ -62,7 +62,7 @@ export const startEditNote = (id, note) => {
         })
             .then(response => {
                 const note = response.data
-                console.log('hrere', note)
+                // console.log('hrere', note)
                 dispatch(editNote(id, note))
             })
             .catch(err => {

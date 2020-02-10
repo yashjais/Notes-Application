@@ -25,8 +25,8 @@ function NotesShow(props) {
 
 const mapStateToProps = (state, props) => {
     return {
-        note: state.notes.find(note => note._id == props.match.params.id)
-        // category: state.category.find()
+        note: state.notes.find(note => note._id == props.match.params.id),
+        category: state.categories
     }
 }
 

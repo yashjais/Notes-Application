@@ -16,9 +16,9 @@ class Form extends React.Component {
             // description: "",
             category: props.category ? props.category._id : "",
             categories: props.categories,
-            pin: false,
-            bin: false,
-            archive: false
+            pin: props.pin && true,
+            bin: props.bin && true,
+            archive: props.archive && true
         }
         console.log('this.state', this.state)
     }
@@ -102,13 +102,13 @@ class Form extends React.Component {
                         }
                     </select> <br />
                     <label htmlFor="pin"> Pin </label>
-                    <input type="checkbox" value={this.state.archive} onChange={this.pinChange} id="pin" /> <br />
+                    <input type="checkbox" value={this.state.pin} checked={this.state.pin} onChange={this.pinChange} id="pin" /> <br />
 
                     <label htmlFor="bin"> Bin </label>
-                    <input type="checkbox" value={this.state.archive} onChange={this.binChange} id="bin" /> <br />
+                    <input type="checkbox" value={this.state.bin} checked={this.state.bin} onChange={this.binChange} id="bin" /> <br />
 
                     <label htmlFor="archive"> Archive </label>
-                    <input type="checkbox" value={this.state.archive} onChange={this.archiveChange} id="archive" /> <br />
+                    <input type="checkbox" value={this.state.archive} checked={this.state.archive} onChange={this.archiveChange} id="archive" /> <br />
 
                     {/* <input type="file" name="noteImage" onChange={this.handleFileChange} /> <br /> */}
                     <input type="submit" value="go!" />

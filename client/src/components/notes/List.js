@@ -23,7 +23,8 @@ function NotesList(props) {
 
 const mapStateToProps = (state) => {
     return {
-        notes: state.notes
+        notes: state.notes,
+        category: state.categories
     }
 }
   
