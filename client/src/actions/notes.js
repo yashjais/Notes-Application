@@ -20,7 +20,11 @@ export const editNote = (id, note) => {
 
 export const startGetNotes = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3020/notes')
+        axios.get('http://localhost:3020/notes', {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
             .then(response => {
                 const notes = response.data
                 dispatch(getNotes(notes))
@@ -34,7 +38,11 @@ export const startGetNotes = () => {
 
 export const startAddNote = (note) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/notes', note)
+        axios.post('http://localhost:3020/notes', note, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
             .then(response => {
                 const note = response.data
                 dispatch(addNote(note))
@@ -47,7 +55,11 @@ export const startAddNote = (note) => {
 
 export const startEditNote = (id, note) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/notes/${id}`, note)
+        axios.put(`http://localhost:3020/notes/${id}`, note, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
             .then(response => {
                 const note = response.data
                 console.log('hrere', note)

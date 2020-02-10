@@ -10,7 +10,13 @@ function NotesShow(props) {
 
             <h4> {props.note && props.note.description} </h4>
 
-            <p> Category - {(props.note && props.note.category) ? props.note.category.name : "uncategorized"} </p>
+            <p> Category -  </p>
+
+            <h5> Pin - {props.note && props.note.pin ? "pinned" : "not pinned"} </h5>
+            
+            <h5> Bin - {props.note && props.note.bin ? "in bin" : "not in bin"} </h5>
+
+            <h5> Archive - {props.note && props.note.archive ? "archived" : "not archived"} </h5>
 
             <Link to={`/notes/edit/${props.note && props.note._id}`}> edit </Link>
         </div>
@@ -20,6 +26,7 @@ function NotesShow(props) {
 const mapStateToProps = (state, props) => {
     return {
         note: state.notes.find(note => note._id == props.match.params.id)
+        // category: state.category.find()
     }
 }
 

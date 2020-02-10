@@ -13,14 +13,17 @@ module.exports.register = (req, res) => {
 
 module.exports.login = (req, res) => {
     const body = req.body
+    console.log('in the login')
     User.findByCredentials(body.email, body.password)
         .then(user => {
             // res.send(user)
             return user.generateToken()
         })
         .then(function(token) {
+            console.log('in the backend ', token)
             // console.log('after the generateToken', user, token)
-            res.setHeader('x-auth', token).send({})  //pick(user, ['_id', 'username', 'email'])))
+            // res.setHeader('x-auth', token).send({ token: token })  //pick(user, ['_id', 'username', 'email'])))
+            res.send({ token })
         })
         .catch(err => {
             res.send(err)

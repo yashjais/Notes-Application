@@ -2,7 +2,7 @@ const Note = require('../models/note')
 const _ = require('lodash')
 
 module.exports.list =  (req, res) => {
-    Note.find({ user: req.user._id }).populate('category',['_id','name'])
+    Note.find({ user: req.user._id }) //.populate('category',['_id','name'])
     // Note.find()
         .then((response) => {
             res.json(response)
@@ -14,7 +14,7 @@ module.exports.list =  (req, res) => {
 
 module.exports.show = (req, res) => {
     const id = req.params.id
-    Note.findOne({ _id: id, user: req.user._id }).populate('category',['_id','name'])
+    Note.findOne({ _id: id, user: req.user._id }) //.populate('category',['_id','name'])
     // Note.findById(id)
         .then(note => {
             if(note) {

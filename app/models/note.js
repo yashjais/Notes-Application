@@ -24,6 +24,14 @@ const noteSchema = new Schema({
         type: Boolean,
         default: false
     },
+    bin: {
+        type: Boolean,
+        default: false
+    },
+    archive: {
+        type: Boolean,
+        default: false
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref : 'User'

@@ -11,7 +11,7 @@ function NotesList(props) {
                 {
                     props.notes.map(note => {
                         return (
-                            <li key={note._id}> {note.title}  - {note.description} - {note.category ? note.category.name : "uncategorized"} <Link to={`/notes/${note._id}`}> show </Link></li>
+                            <li key={note._id}> {note.title}  - {note.description} - {note.category ? note.category.name : "uncategorized"} - {note.pin ? "pinned" : "not pinned"} - {note.bin ? "bin" : "not in bin"} - {note.archive ? "archived" : "not archived"}  <Link to={`/notes/${note._id}`}> show </Link></li>
                         )
                     })
                 }
