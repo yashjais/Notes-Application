@@ -36,7 +36,7 @@ export const startGetNotes = () => {
     
 }
 
-export const startAddNote = (note) => {
+export const startAddNote = (note, redirect) => {
     return (dispatch) => {
         axios.post('http://localhost:3020/notes', note, {
             headers: {
@@ -46,6 +46,7 @@ export const startAddNote = (note) => {
             .then(response => {
                 const note = response.data
                 dispatch(addNote(note))
+                redirect()
             })
             .catch(err => {
                 console.log(err)
@@ -53,7 +54,7 @@ export const startAddNote = (note) => {
     }
 }
 
-export const startEditNote = (id, note) => {
+export const startEditNote = (id, note, redirect) => {
     return (dispatch) => {
         axios.put(`http://localhost:3020/notes/${id}`, note, {
             headers: {
@@ -64,6 +65,7 @@ export const startEditNote = (id, note) => {
                 const note = response.data
                 // console.log('hrere', note)
                 dispatch(editNote(id, note))
+                redirect()
             })
             .catch(err => {
                 console.log(err)

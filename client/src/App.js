@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Link, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 
 import Login from './components/users/login'
 import Register from './components/users/register'
@@ -10,7 +10,8 @@ import NotesAdd from './components/notes/Add'
 import NotesEdit from './components/notes/Edit'
 
 import CategoriesList from './components/categories/List'
-import CategoriesAdd from './components/categories/Add'
+import CategoryShow from './components/categories/Show'
+import CategoryEdit from './components/categories/Edit'
  
 function App(props) {
     const handleLogout = () => {
@@ -49,8 +50,9 @@ function App(props) {
             <Route path="/notes/edit/:id" component={NotesEdit} exact={true} />
             <Route path="/notes/:id" component={NotesShow} />
 
-            <Route path="/categories" component={CategoriesList} exact={true}/>
-            <Route path="/categories/add" component={CategoriesAdd} />
+            <Route path="/categories" component={CategoriesList} exact={true} />
+            <Route path="/categories/edit/:id" component={CategoryEdit} exact={true} />
+            <Route path="/categories/:id" component={CategoryShow} />
             </Switch>
 
             </BrowserRouter>

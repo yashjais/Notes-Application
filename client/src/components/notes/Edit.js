@@ -6,8 +6,10 @@ import {startEditNote} from '../../actions/notes'
 function NotesEdit(props) {
     const handleSubmit = (note) => {
         console.log('clicked', note)
-        props.dispatch(startEditNote(props.note._id , note))
-        props.history.push('/notes')
+        const redirect = () => props.history.push('/notes')
+        // props.dispatch(startAddNote(note, redirect))
+        props.dispatch(startEditNote(props.note._id , note, redirect))
+        // props.history.push('/notes')
         // window.location.push = '/notes'
     }
     console.log('in the edit', props)

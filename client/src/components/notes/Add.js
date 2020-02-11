@@ -6,8 +6,8 @@ import {connect} from 'react-redux'
 function NotesAdd(props) {
     const handleSubmit = (note) => {
         console.log('clicked', note)
-        props.dispatch(startAddNote(note))
-        props.history.push('/notes')
+        const redirect = () => props.history.push('/notes')
+        props.dispatch(startAddNote(note, redirect)) // this is an asynchronus tasks
         // window.location.push = '/notes'
     }
     return (
