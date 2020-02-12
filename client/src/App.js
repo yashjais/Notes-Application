@@ -8,6 +8,9 @@ import NotesList from './components/notes/List'
 import NotesShow from './components/notes/Show'
 import NotesAdd from './components/notes/Add'
 import NotesEdit from './components/notes/Edit'
+import NotesPin from './components/notes/Pin'
+import NotesBin from './components/notes/Bin'
+import NotesArchive from './components/notes/Archive'
 
 import CategoriesList from './components/categories/List'
 import CategoryShow from './components/categories/Show'
@@ -16,7 +19,7 @@ import CategoryEdit from './components/categories/Edit'
 function App(props) {
     const handleLogout = () => {
         localStorage.removeItem('authToken')
-        window.location.href = '/account/login' // reload the page too
+        window.location.href = '/login' // reload the page too
         // props.history.push('/account/login') // don't work here coz we don't have access to BrowserRouter of react-router-dom
     }
     return (
@@ -46,6 +49,9 @@ function App(props) {
             <Route path="/register" component={Register} exact={true} />
 
             <Route path="/notes" component={NotesList} exact={true} />
+            <Route path="/notes/pin" component={NotesList} exact={true} />
+            <Route path="/notes/bin" component={NotesList} exact={true} />
+            <Route path="/notes/archive" component={NotesList} exact={true} />
             <Route path="/notes/add" component={NotesAdd} exact={true} />
             <Route path="/notes/edit/:id" component={NotesEdit} exact={true} />
             <Route path="/notes/:id" component={NotesShow} />

@@ -18,6 +18,12 @@ export const editNote = (id, note) => {
     }
 }
 
+export const deleteNote = (id) => {
+    return {
+        type: "DELETE_NOTE", payload: id
+    }
+}
+
 export const startGetNotes = () => {
     return (dispatch) => {
         axios.get('http://localhost:3020/notes', {
@@ -31,6 +37,22 @@ export const startGetNotes = () => {
             })
             .catch(err => {
                 console.log(err)
+                if(err.response) { // net::ERR_CONNECTION_REFUSED // err.response is undefined
+                    if(err.response.status == 401) {
+                        console.log(err.response.status)
+                        // console.log(window.location)
+                        // console.log(window.history)
+                        // if(window.location.pathname == '/login' ||  window.location.pathname == '/register') {
+                        //     console.log('happy hacking')
+                        // } else {
+                        //     window.alert('You have to login First')
+                        //     window.location.href = '/login'
+                        // }
+                    }
+                } else {
+                    alert('window will be reloaded')
+                    window.location.reload()
+                }
             })
     }
     
@@ -70,5 +92,61 @@ export const startEditNote = (id, note, redirect) => {
             .catch(err => {
                 console.log(err)
             })
+    }
+}
+
+export const startDeleteNote = (id) => {
+    return (dispatch) => {
+        axios.delete(`http://localhost:3020/notes/${id}`, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
+            .then(response => {
+                console.log(response)
+                dispatch(deleteNote(id))
+            }) 
+    }
+}
+
+export const startBinNote = (id, note) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:3020/notes/${id}`, note, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
+            .then(response => {
+                console.log(response)
+                dispatch(editNote(id, note))
+            }) 
+    }
+}
+
+export const startPinNote = (id, note) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:3020/notes/${id}`, note, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
+            .then(response => {
+                console.log(response)
+                dispatch(editNote(id, note))
+            }) 
+    }
+}
+
+export const startArchiveNote = (id, note) => {
+    return (dispatch) => {
+        axios.put(`http://localhost:3020/notes/${id}`, note, {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
+            .then(response => {
+                console.log(response)
+                dispatch(editNote(id, note))
+            }) 
     }
 }

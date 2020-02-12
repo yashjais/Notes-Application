@@ -17,14 +17,15 @@ function NotesEdit(props) {
         <div>
             <h1> Edit </h1>
 
-            <Form {...props.note} handleSubmit={handleSubmit}/>
+            <Form {...props.note} {...props.category} handleSubmit={handleSubmit}/>
         </div>
     )
 }
 
 const mapStateToProps = (state, props) => {
     return {
-        note: state.notes.find(note => note._id == props.match.params.id)
+        note: state.notes.find(note => note._id == props.match.params.id),
+        category: state.categories.find(cat => cat._id == (state.notes.find(note => note._id == props.match.params.id)).category)
     }
 }
 

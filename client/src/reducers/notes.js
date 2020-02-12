@@ -17,6 +17,9 @@ const notesReducers = (state = initialState, action) => {
                 }
             })
         }
+        case "DELETE_NOTE" : {
+            return state.filter(note => note._id != action.payload)
+        }
         default: {
             return [...state]
         }

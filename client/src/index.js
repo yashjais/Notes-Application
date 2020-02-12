@@ -11,6 +11,7 @@ const store = configureStore()
 store.subscribe(() => {
     console.log('in the index', store.getState())
 })
+
 // console.log(store.getState())
 store.dispatch(startGetNotes())
 store.dispatch(startSetCategories())

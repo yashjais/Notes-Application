@@ -30,6 +30,19 @@ export const startSetCategories = () => {
             })
             .catch(err => {
                 console.log(err)
+                if(err.response) { // net::ERR_CONNECTION_REFUSED // err.response is undefined
+                    if(err.response.status == 401) {
+                        console.log(err.response.status)
+                        // console.log(err.response.status)
+                        // console.log(window.location)
+                        // if(window.location.href != 'http://localhost:3000/login'){
+                        //     window.alert('You have to login First')
+                        //     window.location.href = '/login'
+                        // }  
+                    }
+                } else {
+                    window.location.reload()
+                }
             })
     }
 }

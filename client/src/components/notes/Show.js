@@ -8,9 +8,9 @@ function NotesShow(props) {
         <div>
             <h2> Notes Show - {props.note && props.note.title} </h2>
 
-            <h4> {props.note && props.note.description} </h4>
+            <h3> Description - {props.note && props.note.description} </h3>
 
-            <p> Category -  </p>
+            <h4> Category -  {props.category && props.category.name} </h4>
 
             <h5> Pin - {props.note && props.note.pin ? "pinned" : "not pinned"} </h5>
             
@@ -26,7 +26,7 @@ function NotesShow(props) {
 const mapStateToProps = (state, props) => {
     return {
         note: state.notes.find(note => note._id == props.match.params.id),
-        category: state.categories
+        category: state.categories.find(cat => cat._id == (state.notes.find(note => note._id == props.match.params.id)).category)
     }
 }
 

@@ -8,17 +8,8 @@ class Form extends React.Component {
         this.state = {
             title: props.title ? props.title : "",
             description: props.description ? props.description : "",
-            // category: props.category ? props.category._id : "",
-            // // noteImage: props.noteImage ? props.noteImage : "",
-            // categoryName: props.category ? props.category.name : "select",
-            // categories: props && props.categories
-            // title: "",
-            // description: "",
-            category: props.category ? props.category._id : "",
+            category: props.name ? props.name : "",
             categories: props.categories,
-            pin: props.pin && true,
-            bin: props.bin && true,
-            archive: props.archive && true
         }
         console.log('this.state', this.state)
     }
@@ -68,9 +59,12 @@ class Form extends React.Component {
         }
         this.state.category && (formData.category = this.state.category)
         this.state.description && (formData.description = this.state.description)
-
-        console.log(formData)
-        this.props.handleSubmit(formData)
+        if(formData.title.length < 3 || (formData.description && formData.description.length <3)){
+            alert('title/description should be greater than 3 letters')
+        } else {
+            console.log(formData)
+            this.props.handleSubmit(formData)
+        }
         
 
         // const formData = new FormData()
@@ -101,14 +95,6 @@ class Form extends React.Component {
                            }) 
                         }
                     </select> <br />
-                    <label htmlFor="pin"> Pin </label>
-                    <input type="checkbox" value={this.state.pin} checked={this.state.pin} onChange={this.pinChange} id="pin" /> <br />
-
-                    <label htmlFor="bin"> Bin </label>
-                    <input type="checkbox" value={this.state.bin} checked={this.state.bin} onChange={this.binChange} id="bin" /> <br />
-
-                    <label htmlFor="archive"> Archive </label>
-                    <input type="checkbox" value={this.state.archive} checked={this.state.archive} onChange={this.archiveChange} id="archive" /> <br />
 
                     {/* <input type="file" name="noteImage" onChange={this.handleFileChange} /> <br /> */}
                     <input type="submit" value="go!" />

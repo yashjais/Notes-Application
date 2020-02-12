@@ -26,7 +26,7 @@ module.exports.login = (req, res) => {
             res.send({ token })
         })
         .catch(err => {
-            res.send(err)
+            res.status('401').send('invalid email or password')
         })
 }
 
