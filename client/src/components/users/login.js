@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { startGetUser } from '../../actions/users'
-import axios from 'axios'
 
 class Login extends React.Component {
     constructor() {
@@ -24,24 +23,9 @@ class Login extends React.Component {
             password: this.state.password
         }
         console.log(formData)
-        // this.props.dispatch(startGetUser(formData))
-        // localStorage.setItem('authToken', token)
-        // this.props.history.push('/')
-        axios.post('http://localhost:3020/users/login',formData)
-        .then(response => {
-            console.log(response.data)
-            if(response.data.hasOwnProperty('error')){
-                alert(response.data.error)
-            }else{
-                const token = response.data.token
-                localStorage.setItem('authToken', token)
-                this.props.history.push('/')
-                window.location.reload()
-            }
-        })
-        .catch(err => {
-            alert(err)
-        })
+        const redirect = () => window.location.href = '/'
+        // const redirect = () => this.props.history.location.reload
+        this.props.dispatch(startGetUser(formData, redirect))
     }
     render() {
         return(

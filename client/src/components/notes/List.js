@@ -5,6 +5,8 @@ import {startDeleteNote,startPinNote,startBinNote,startArchiveNote} from '../../
 
 function NotesList(props) {
     console.log('in listing of notes',props.location.pathname)
+    const name = (props.location && props.location.pathname.split('/')[(props.location.pathname.split('/')).length - 1] )
+    console.log(name, 'here')
     console.log('in the listing', props.categories)
     const handleClick = (id) => {
         props.dispatch(startDeleteNote(id))
@@ -27,7 +29,7 @@ function NotesList(props) {
     return (
         <div>
             <Link to="/notes">All</Link> || <Link to="/notes/pin">Pinned</Link> || <Link to="/notes/bin">Binned</Link> || <Link to="/notes/archive">Archived</Link>
-            <h1> Listing of Notes - {props.notes && props.notes.length} </h1>
+            <h2> Listing of Notes - {props.notes && props.notes.length} </h2>
             <ul>
                 {
                     props.notes.map(note => {
@@ -58,9 +60,10 @@ function NotesList(props) {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     return {
-        notes: state.notes.sort((a, b) => b.pin - a.pin).filter(note => note.archive == false),
+        // condition ? statement : condition ? statement : condition ? statement : statement
+        notes:  (props.location && props.location.pathname.split('/')[(props.location.pathname.split('/')).length - 1] == 'notes') ? (state.notes.sort((a, b) => b.pin - a.pin).filter(note => note.archive == false)) :  (props.location && props.location.pathname.split('/')[(props.location.pathname.split('/')).length - 1] == 'pin') ? (state.notes.filter(note => note.pin == true)) : (props.location && props.location.pathname.split('/')[(props.location.pathname.split('/')).length - 1] == 'bin') ? (state.notes.filter(note => note.bin == true)) : (state.notes.filter(note => note.archive == true)),
         categories: state.categories
     }
 }

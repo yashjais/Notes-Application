@@ -7,7 +7,7 @@ const usersController = require('../app/controllers/usersController')
 
 router.post('/users/register', usersController.register)
 router.post('/users/login', usersController.login)
-router.post('/users/account',authenticateUser, usersController.account)
+router.get('/users/account',authenticateUser, usersController.account)
 router.post('/users/logout', authenticateUser, usersController.logout)
 router.post('/users/forgot-password', usersController.forgotPassword)
 router.get('/users/forgot-password', usersController.revivePassword)

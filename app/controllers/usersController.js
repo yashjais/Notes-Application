@@ -19,11 +19,11 @@ module.exports.login = (req, res) => {
             // res.send(user)
             return user.generateToken()
         })
-        .then(function(token) {
-            console.log('in the backend ', token)
+        .then(function(user) {
+            // console.log('in the backend ', user)
             // console.log('after the generateToken', user, token)
             // res.setHeader('x-auth', token).send({ token: token })  //pick(user, ['_id', 'username', 'email'])))
-            res.send({ token })
+            res.send(user)
         })
         .catch(err => {
             res.status('401').send('invalid email or password')
@@ -31,8 +31,9 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.account = (req, res) => {
-    const { user } = req
-    res.send(pick(user, '_id', 'username', 'email'))
+    const { user } = req 
+    user.token = req.token
+    res.send(pick(user, '_id', 'username', 'email', 'token'))
 }
 
 module.exports.logout = (req, res) => {

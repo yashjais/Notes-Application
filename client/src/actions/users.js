@@ -1,18 +1,49 @@
 import axios from 'axios'
 
-export const setUser = (token) => {
-    return { type: 'SET_USER', payload: token}
+export const setUser = (user) => {
+    return { 
+        type: 'SET_USER', payload: user
+    }
 }
 
-export const startGetUser = (body, redirect) => {
+// Register // Setting up the user
+export const startSetUser = (body, redirect) => {
     return (dispatch) => {
         axios.post('http://localhost:3020/users/register', body)
             .then(response => {
-                // console.log(response)
+                console.log(response.data, 'in the error of register')
+                if(response.data.hasOwnProperty('errors')) {
+                    alert(response.data._message)
+                } else if(response.data.hasOwnProperty('errmsg')) {
+                    alert(response.data.errmsg)
+                } else {
+                    console.log(response.data, 'in else')
+                    redirect()
+                }
+            })
+            .catch(err => {
+                alert(err)
+                // console.log(err)
+            })      
+    }
+}
+
+// Login // Getting the user from database
+export const startGetUser = (user, redirect) => {
+    return (dispatch) => {
+        axios.post('http://localhost:3020/users/login', user)
+            .then(response => {
+                console.log(response.data)
                 if(response.data.hasOwnProperty('errors')){
                     alert(response.data.message)
                 }else{
-                    redirect()
+                    const user = response.data
+                    console.log(user, 'in the thunk action')
+                    const token = response.data.token
+                    console.log(token)
+                    localStorage.setItem('authToken', token)
+                    dispatch(setUser(user))
+                    // redirect()
                 }
             })
             .catch(err => {
@@ -21,24 +52,19 @@ export const startGetUser = (body, redirect) => {
     }
 }
 
-export const startSetUser = (user, redirect) => {
+export const startGetUserByToken = (token) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/users/login', user)
+        axios.get('http://localhost:3020/users/account', {
+            headers: {
+                'x-auth': localStorage.getItem('authToken')
+            }
+        })
             .then(response => {
-                console.log(response.data, 'inthe error of login')
-                if(response.data.hasOwnProperty('error')){
-                    alert(response.data.error)
-                }else{
-                    const token = response.data.token
-                    console.log(response.data)
-                    localStorage.setItem('authToken', token)
-                    dispatch(setUser(response.data))
-                    redirect()
-                }
+                const user = response.data
+                dispatch(setUser(user))
             })
             .catch(err => {
-                // console.log(err)
-                alert('invalid password/email')
-            })      
+                alert(`token is not valid, ${err}`)
+            })
     }
 }

@@ -1,14 +1,14 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import notesReducers from '../reducers/notes'
 import categoriesReducers from '../reducers/categories'
-import usersReducers from '../reducers/users'
+import userReducers from '../reducers/users'
 import thunk from 'redux-thunk'
 
 const configureStore = () => {
     const store = createStore(combineReducers({
         notes: notesReducers,
         categories: categoriesReducers,
-        users: usersReducers
+        user: userReducers
     }), applyMiddleware(thunk))
     return store
 }

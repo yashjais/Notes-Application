@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { startSetUser } from '../../actions/users'
-import axios from 'axios'
 
 class Register extends React.Component {
     constructor() {
@@ -28,19 +26,8 @@ class Register extends React.Component {
             password: this.state.password
         }
         console.log(formData)
-        // this.props.dispatch(startSetUser(formData)) redux
-        axios.post('http://localhost:3020/users/register',formData)
-            .then(response => {
-                // console.log(response)
-                if(response.data.hasOwnProperty('errors')){
-                    alert(response.data.message)
-                }else{
-                    this.props.history.push('/login')
-                }
-            })
-            .catch(err => {
-                alert(err)
-            })
+        const redirect = () => this.props.history.push('/login')
+        this.props.dispatch(startSetUser(formData, redirect)) 
     }
     render() {
         return(

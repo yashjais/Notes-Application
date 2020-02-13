@@ -88,7 +88,8 @@ class Form extends React.Component {
                     
                     <label>Category</label>
                     <select onChange={this.handleCatChange}>
-                        <option value="">{this.props.category ? this.props.category.name : "select"}</option>
+                        <option value={this.props.category ? this.props.category._id : "select"}>
+                            {this.state.category ? this.state.category : "select"}</option>
                         {
                            this.state.categories.map(category => {
                                 return <option key={category._id} value={category._id} >{category.name}</option>

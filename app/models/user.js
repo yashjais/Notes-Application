@@ -56,7 +56,14 @@ userSchema.methods.generateToken = function() {
     const token = jwt.sign(tokenData, 'jwt@123')
     user.tokens.push({token})
     return user.save()
-            .then(user => Promise.resolve(token))
+            .then(user => {
+                const data = {}
+                data.token = token
+                data.username = user.username,
+                data.email = user.email,
+                data._id = user._id
+                return Promise.resolve(data)
+            })
             .catch(err => {
                 return Promise.reject(err)
             })

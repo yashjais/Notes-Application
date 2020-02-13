@@ -1,5 +1,9 @@
 import React from 'react'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import Home from './home'
+import Account from './components/users/account'
 
 import Login from './components/users/login'
 import Register from './components/users/register'
@@ -8,15 +12,13 @@ import NotesList from './components/notes/List'
 import NotesShow from './components/notes/Show'
 import NotesAdd from './components/notes/Add'
 import NotesEdit from './components/notes/Edit'
-import NotesPin from './components/notes/Pin'
-import NotesBin from './components/notes/Bin'
-import NotesArchive from './components/notes/Archive'
 
 import CategoriesList from './components/categories/List'
 import CategoryShow from './components/categories/Show'
 import CategoryEdit from './components/categories/Edit'
  
 function App(props) {
+    console.log(props)
     const handleLogout = () => {
         localStorage.removeItem('authToken')
         window.location.href = '/login' // reload the page too
@@ -31,9 +33,11 @@ function App(props) {
             {
                 localStorage.getItem('authToken') ? (
                     <div> 
+                        <Link to="/">Home</Link> 
                         <Link to="/notes"> Notes </Link>
                         <Link to="/categories"> Categories </Link>
                         <Link to="#" onClick={handleLogout}>Logout</Link>
+                        <Link to="/account">Account</Link>
                     </div>
                 ) : (
                     <div>
@@ -45,8 +49,11 @@ function App(props) {
 
             <Switch>
 
+            <Route path="/" component={Home} exact={true} />
+
             <Route path="/login" component={Login} exact={true} />
             <Route path="/register" component={Register} exact={true} />
+            <Route path="/account" component={Account} exact={true} />
 
             <Route path="/notes" component={NotesList} exact={true} />
             <Route path="/notes/pin" component={NotesList} exact={true} />
@@ -66,4 +73,4 @@ function App(props) {
     )
 }
 
-export default App
+export default connect()(App)
