@@ -124,8 +124,9 @@ userSchema.statics.findByCredentials = function(email, password) {
 
 userSchema.pre('save', function(next) {
     const user = this
+    console.log('user is in pre save')
     if(user.isNew){
-        // console.log('in if of pre')
+        console.log('in if of pre')
         bcrypt.genSalt(10)
             .then(salt => {
                 return bcrypt.hash(user.password, salt)
@@ -138,10 +139,27 @@ userSchema.pre('save', function(next) {
                 Promise.reject('gen salt is not found')
             })
     } else {
-        // console.log('in else of pre')
+        console.log('in else of pre')
         next()
     }
 })
+
+userSchema.methods.saveOneMoreTime = function() {
+    const user = this
+    console.log('saving one more time')
+    return bcrypt.genSalt(10)
+        .then(salt => {
+            return bcrypt.hash(user.password, salt)
+        })
+        .then(encPass => {
+            user.password = encPass
+            return user.save()
+        })
+        .then(user => Promise.resolve(user))
+        .catch(err => {
+            Promise.reject('gen salt is not found')
+        })
+}
 
 const User = mongoose.model('User', userSchema)
 

@@ -11,6 +11,7 @@ router.get('/users/account',authenticateUser, usersController.account)
 router.post('/users/logout', authenticateUser, usersController.logout)
 router.post('/users/forgot-password', usersController.forgotPassword)
 router.get('/users/forgot-password', usersController.revivePassword)
+router.post('/users/reset-password', usersController.resetPassword)
 
 router.get('/notes', authenticateUser, notesController.list) 
 router.get('/notes/:id', authenticateUser, notesController.show) 
