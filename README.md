@@ -1,12 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Notes-Application
+
+This is Easy-to-Use, fast, elegant and secure Full Stack Application. Made using React-Redux, this app lets you save the tasks and particular categories associated to it. The Back-End is made using Node-Express. And the database used is Mongo-Db. The designing tools used in this app are bootstrap and reactstrap.
+
+## Description
+
+CRUD operation can be done effectively on Notes as well as on Categories.
+Notes also have several functionality such as pin, bin, archive.
+Even if you delete an category assciated with one or several notes, the code will work.
+Full User Authentication is integrated in this project with the added functionality of forgot-password, but you have to use your gmail account for sending out mail. Forgot-Password functionality uses nodemailer as mailing option.
+
+## Dependencies
+
+### Back-End
+ 
+1. bcrypt: "^3.0.8",
+2. concurrently: "^5.0.2",
+3. cors: "^2.8.5",
+4. express: "^4.17.1",
+5. jsonwebtoken: "^8.5.1",
+6. lodash: "^4.17.15",
+7. mongoose: "^5.8.11",
+8. nodemailer: "^6.4.2",
+9. validator: "^12.2.0"
+
+### Front-End
+
+1. axios: "^0.19.2",
+2. react: "^16.12.0",
+3. react-dom: "^16.12.0",
+4. react-redux: "^7.1.3",
+5. react-router-dom: "^5.1.2",
+6. react-scripts: "3.3.0",
+7. redux: "^4.0.5",
+8. redux-thunk: "^2.3.0"
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+### `nodemon index.js` || `npm dev server`
+
+Runs the back-end app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3020) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+You will be needing postman if you only run Backend.
+
+### `npm start`
+
+Runs the front-end app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
