@@ -16,13 +16,18 @@ import NotesEdit from './components/notes/Edit'
 import CategoriesList from './components/categories/List'
 import CategoryShow from './components/categories/Show'
 import CategoryEdit from './components/categories/Edit'
+
+import {startRemoveUser} from './actions/users'
  
 function App(props) {
     console.log(props)
     const handleLogout = () => {
-        localStorage.removeItem('authToken')
-        window.location.href = '/login' // reload the page too
-        // props.history.push('/account/login') // don't work here coz we don't have access to BrowserRouter of react-router-dom
+        const token = localStorage.getItem('authToken')
+        if(token) {
+            const redirect = () => window.location.href = '/'
+            props.dispatch(startRemoveUser(token, redirect))
+            localStorage.removeItem('authToken')
+        }
     }
     return (
         <div> 
@@ -31,7 +36,7 @@ function App(props) {
             <h1> Notes App </h1>
 
             {
-                localStorage.getItem('authToken') ? (
+                Object.keys(props.user).length != 0 ? (
                     <div> 
                         <Link to="/">Home</Link> 
                         <Link to="/notes"> Notes </Link>
@@ -73,4 +78,10 @@ function App(props) {
     )
 }
 
-export default connect()(App)
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(App)

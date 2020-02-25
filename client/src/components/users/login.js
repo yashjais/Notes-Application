@@ -23,9 +23,9 @@ class Login extends React.Component {
             password: this.state.password
         }
         console.log(formData)
-        const redirect = () => window.location.href = '/'
+        const redirect = () => this.props.history.push('/')
         // const redirect = () => this.props.history.location.reload
-        this.props.dispatch(startGetUser(formData, redirect))
+        this.props.dispatch(startGetUser(formData, redirect)) // startGetUser
     }
     render() {
         return(

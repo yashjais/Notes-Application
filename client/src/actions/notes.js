@@ -39,7 +39,7 @@ export const startGetNotes = () => {
                 console.log(err)
                 if(err.response) { // net::ERR_CONNECTION_REFUSED // err.response is undefined
                     if(err.response.status == 401) {
-                        console.log(err.response.status)
+                        alert(err.response.status)
                         // console.log(window.location)
                         // console.log(window.history)
                         // if(window.location.pathname == '/login' ||  window.location.pathname == '/register') {

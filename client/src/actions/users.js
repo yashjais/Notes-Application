@@ -6,6 +6,12 @@ export const setUser = (user) => {
     }
 }
 
+export const removeUser = () => {
+    return {
+        type: 'REMOVE_USER'
+    }
+}
+
 // Register // Setting up the user
 export const startSetUser = (body, redirect) => {
     return (dispatch) => {
@@ -43,7 +49,7 @@ export const startGetUser = (user, redirect) => {
                     console.log(token)
                     localStorage.setItem('authToken', token)
                     dispatch(setUser(user))
-                    // redirect()
+                    redirect()
                 }
             })
             .catch(err => {
@@ -52,11 +58,11 @@ export const startGetUser = (user, redirect) => {
     }
 }
 
-export const startGetUserByToken = (token) => {
+export const startGetUserIndex = (token) => {
     return (dispatch) => {
         axios.get('http://localhost:3020/users/account', {
             headers: {
-                'x-auth': localStorage.getItem('authToken')
+                'x-auth': token
             }
         })
             .then(response => {
@@ -64,7 +70,24 @@ export const startGetUserByToken = (token) => {
                 dispatch(setUser(user))
             })
             .catch(err => {
-                alert(`token is not valid, ${err}`)
+                console.log(err)
             })
+    }
+}
+
+export const startRemoveUser = (token, redirect) => {
+    return (dispatch) => {
+        axios.delete('http://localhost:3020/users/logout', {
+            headers: {
+                'x-auth':token
+            }
+        })
+            .then(response => {
+                console.log(response.data)
+                localStorage.removeItem('authToken')
+                dispatch(removeUser())
+                redirect()
+            })
+            .catch(err => alert(err))
     }
 }
