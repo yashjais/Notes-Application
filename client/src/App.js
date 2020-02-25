@@ -30,27 +30,51 @@ function App(props) {
         }
     }
     return (
-        <div> 
+        <div className="container"> 
             <BrowserRouter>
+ 
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <span className="navbar-brand mb-0 h1">Notes App</span>
+                
 
-            <h1> Notes App </h1>
-
-            {
-                Object.keys(props.user).length != 0 ? (
-                    <div> 
-                        <Link to="/">Home</Link> 
-                        <Link to="/notes"> Notes </Link>
-                        <Link to="/categories"> Categories </Link>
-                        <Link to="#" onClick={handleLogout}>Logout</Link>
-                        <Link to="/account">Account</Link>
-                    </div>
-                ) : (
-                    <div>
-                        <Link to="/"> Home </Link>
-                        <Link to="/login"> Login </Link> 
-                    </div>
-                )
-            }
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        {
+                            Object.keys(props.user).length != 0 ? (
+                                <React.Fragment> 
+                                    
+                                    <li className="nav-item active">
+                                        <a className="nav-link" ><Link to="/">Home</Link> </a>
+                                        {/* <button>Home</button> */}
+                                    </li>
+                                    <li className="nav-item active">
+                                        <a className="nav-link" href="/"><Link to="/notes"> Notes </Link> </a>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <a className="nav-link" href="/"><Link to="/categories"> Categories </Link> </a>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <a className="nav-link float-right" href="/"><Link to="#" onClick={handleLogout}> Logout </Link> </a>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <a className="nav-link float-right" href="/"><Link to="/account"> Account </Link> </a>
+                                    </li>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <li className="nav-item active">
+                                        <a className="nav-link" href="/"><Link to="/"> Home </Link> </a>
+                                    </li>
+                                    <li className="nav-item active">
+                                        <a className="nav-link" href="/"><Link to="/login"> Login </Link>  </a>
+                                    </li>
+                                    
+                                </React.Fragment>
+                            )
+                        }            
+                    </ul>
+                </div>
+            </nav>
 
             <Switch>
 
