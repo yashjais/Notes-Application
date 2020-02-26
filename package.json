@@ -21,6 +21,7 @@
     "lodash": "^4.17.15",
     "mongoose": "^5.8.11",
     "nodemailer": "^6.4.2",
+    "sweetalert2": "^9.8.2",
     "validator": "^12.2.0"
   }
 }

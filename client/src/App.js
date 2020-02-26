@@ -7,6 +7,7 @@ import Account from './components/users/account'
 
 import Login from './components/users/login'
 import Register from './components/users/register'
+import ForgotPassword from './components/users/forgotPassword'
 
 import NotesList from './components/notes/List'
 import NotesShow from './components/notes/Show'
@@ -83,6 +84,7 @@ function App(props) {
             <Route path="/login" component={Login} exact={true} />
             <Route path="/register" component={Register} exact={true} />
             <Route path="/account" component={Account} exact={true} />
+            <Route path="/forgot-password" component={ForgotPassword} exact={true} />
 
             <Route path="/notes" component={NotesList} exact={true} />
             <Route path="/notes/pin" component={NotesList} exact={true} />

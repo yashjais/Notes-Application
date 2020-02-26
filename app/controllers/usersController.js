@@ -76,7 +76,7 @@ module.exports.forgotPassword = (req, res) => {
             })
             .catch(err => res.send(err))
     })
-    .catch(err => res.send(err))       
+    .catch(err => res.status('404').send(err))       
 }
 
 module.exports.revivePassword = (req, res) => {

@@ -32,22 +32,28 @@ class Register extends React.Component {
     render() {
         return(
             <div>
-                <h2>Register</h2>
+                <br />
+                <h2 className = "text-xl-center">Register</h2>
+                <br />
 
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username"> Username </label> 
-                    <input type="input" id="username" name="username" value={this.state.username} onChange={this.handleChange} /> <br />
-
-                    <label htmlFor="email"> Email </label> 
-                    <input type="input" id="email" name="email" value={this.state.email} onChange={this.handleChange} /> <br />
-
-                    <label htmlFor="mobile"> Mobile </label> 
-                    <input type="input" id="mobile" name="mobile" value={this.state.mobile} onChange={this.handleChange} /> <br />
-
-                    <label htmlFor="password"> Password </label> 
-                    <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange} /> <br />
-
-                    <input type="submit" value="Go" />
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input className="form-control"  type="input" id="username" name="username" value={this.state.username} onChange={this.handleChange} /> 
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email address</label>
+                        <input className="form-control"  type="input" id="email" name="email" value={this.state.email} onChange={this.handleChange} />  
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="mobile">Mobile</label>
+                        <input className="form-control"  type="input" id="mobile" name="mobile" value={this.state.mobile} onChange={this.handleChange} />   
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input className="form-control"  type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange} /> 
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
                 
             </div>
