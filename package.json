@@ -8,7 +8,6 @@
     "dev-server": "nodemon index.js",
     "dev": "concurrently \"nodemon index.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "cd client && npm run build",
     "heroku-prebuild": "npm install",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
