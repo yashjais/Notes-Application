@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../config/axios'
 
 export const getNotes = (notes) => {
     return {
@@ -26,7 +26,7 @@ export const deleteNote = (id) => {
 
 export const startGetNotes = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3020/notes', {
+        axios.get('/notes', {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -60,7 +60,7 @@ export const startGetNotes = () => {
 
 export const startAddNote = (note, redirect) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/notes', note, {
+        axios.post('/notes', note, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -78,7 +78,7 @@ export const startAddNote = (note, redirect) => {
 
 export const startEditNote = (id, note, redirect) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/notes/${id}`, note, {
+        axios.put(`/notes/${id}`, note, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -97,7 +97,7 @@ export const startEditNote = (id, note, redirect) => {
 
 export const startDeleteNote = (id) => {
     return (dispatch) => {
-        axios.delete(`http://localhost:3020/notes/${id}`, {
+        axios.delete(`/notes/${id}`, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -111,7 +111,7 @@ export const startDeleteNote = (id) => {
 
 export const startBinNote = (id, note) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/notes/${id}`, note, {
+        axios.put(`/notes/${id}`, note, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -125,7 +125,7 @@ export const startBinNote = (id, note) => {
 
 export const startPinNote = (id, note) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/notes/${id}`, note, {
+        axios.put(`/notes/${id}`, note, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -139,7 +139,7 @@ export const startPinNote = (id, note) => {
 
 export const startArchiveNote = (id, note) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/notes/${id}`, note, {
+        axios.put(`/notes/${id}`, note, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }

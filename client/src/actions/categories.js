@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../config/axios'
 
 export const setCategories = (categories) => {
     return { type: 'SET_CATEGORIES', payload: categories}
@@ -18,7 +18,7 @@ export const editCategory = (id, category) => {
 
 export const startSetCategories = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3020/categories',  {
+        axios.get('/categories',  {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -35,7 +35,7 @@ export const startSetCategories = () => {
                         console.log(err.response.status)
                         // console.log(err.response.status)
                         // console.log(window.location)
-                        // if(window.location.href != 'http://localhost:3000/login'){
+                        // if(window.location.href != '/login'){
                         //     window.alert('You have to login First')
                         //     window.location.href = '/login'
                         // }  
@@ -49,7 +49,7 @@ export const startSetCategories = () => {
 
 export const startAddCategory = (category) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/categories', category, {
+        axios.post('/categories', category, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -67,7 +67,7 @@ export const startAddCategory = (category) => {
 
 export const startDeleteCategory = (id) => {
     return (dispatch) => {
-        axios.delete(`http://localhost:3020/categories/${id}`, {
+        axios.delete(`/categories/${id}`, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
@@ -84,7 +84,7 @@ export const startDeleteCategory = (id) => {
 
 export const startEditcategory = (id, category, redirect) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3020/categories/${id}`, category, {
+        axios.put(`/categories/${id}`, category, {
             headers: {
                 'x-auth': localStorage.getItem('authToken')
             }
