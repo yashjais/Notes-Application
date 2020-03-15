@@ -12,8 +12,9 @@ function NotesAdd(props) {
     }
     return (
         <div>
+            <br />
             <h3> Add a new Note here</h3>
-
+            <br />
             <Form {...props} handleSubmit={handleSubmit}/>
         
         </div>

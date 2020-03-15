@@ -80,25 +80,29 @@ class Form extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="title">Title</label>
-                        <input type="text" value={this.state.title} id="title" name="title" onChange={this.handleChange} /> <br />
+                    <div className="form-group col-md-6">
+                        <label htmlFor="title">Title</label>
+                            <input className="form-control" type="text" value={this.state.title} id="title" name="title" onChange={this.handleChange} /> <br />
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="description">Description</label>
+                            <textarea style={{height: '150px'}} className="form-control" type="text" value={this.state.description} id="description" name="description" onChange={this.handleChange} />  <br />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="category">Category</label>
+                        <select onChange={this.handleCatChange} id="category" class="form-control">
+                            <option value={this.props.category ? this.props.category._id : "select"}>
+                                {this.state.category ? this.state.category : "select"}</option>
+                            {
+                                this.state.categories.map(category => {
+                                        return <option className="form-control" key={category._id} value={category._id} >{category.name}</option>
+                                }) 
+                            }
+                        </select>
+                        </div>
 
-                    <label htmlFor="description">Description</label>
-                        <input type="text" value={this.state.description} id="description" name="description" onChange={this.handleChange} /> <br />
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     
-                    <label>Category</label>
-                    <select onChange={this.handleCatChange}>
-                        <option value={this.props.category ? this.props.category._id : "select"}>
-                            {this.state.category ? this.state.category : "select"}</option>
-                        {
-                           this.state.categories.map(category => {
-                                return <option key={category._id} value={category._id} >{category.name}</option>
-                           }) 
-                        }
-                    </select> <br />
-
-                    {/* <input type="file" name="noteImage" onChange={this.handleFileChange} /> <br /> */}
-                    <input type="submit" value="go!" />
                 </form>
             </div>
         )

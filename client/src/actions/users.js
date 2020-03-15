@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../config/axios'
 
 import Swal from 'sweetalert2'
 
@@ -20,7 +20,7 @@ export const removeUser = () => {
 // Register // Setting up the user
 export const startSetUser = (body, redirect) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/users/register', body)
+        axios.post('/users/register', body)
             .then(response => {
                 console.log(response.data, 'in the error of register')
                 if(response.data.hasOwnProperty('errors')) {
@@ -57,7 +57,7 @@ export const startSetUser = (body, redirect) => {
 // Login // Getting the user from database
 export const startGetUser = (user, redirect) => {
     return (dispatch) => {
-        axios.post('http://localhost:3020/users/login', user)
+        axios.post('/users/login', user)
             .then(response => {
                 console.log(response.data)
                 if(response.data.hasOwnProperty('errors')){
@@ -92,7 +92,7 @@ export const startGetUser = (user, redirect) => {
 
 export const startGetUserIndex = (token) => {
     return (dispatch) => {
-        axios.get('http://localhost:3020/users/account', {
+        axios.get('/users/account', {
             headers: {
                 'x-auth': token
             }
@@ -109,7 +109,7 @@ export const startGetUserIndex = (token) => {
 
 export const startRemoveUser = (token, redirect) => {
     return (dispatch) => {
-        axios.delete('http://localhost:3020/users/logout', {
+        axios.delete('/users/logout', {
             headers: {
                 'x-auth':token
             }
@@ -126,7 +126,7 @@ export const startRemoveUser = (token, redirect) => {
 
 export const startForgotUser = (email, redirect) => {
     return dispatch => {
-        axios.post('http://localhost:3020/users/forgot-password', {email})
+        axios.post('/users/forgot-password', {email})
             .then(response => {
                 // if invalid user - // user does not found
                 Swal.fire({
