@@ -9,9 +9,9 @@ const port = process.env.PORT || 3020;
 
 setUpDb()
 
-app.get('/', (req, res) => {
-    res.send('welcome to the website')
-})
+// app.get('/', (req, res) => {
+//     res.send('welcome to the website')
+// })
 
 app.use(cors())
 app.use(express.json())
