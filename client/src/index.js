@@ -10,9 +10,9 @@ import {startGetNotes} from './actions/notes'
 import {startSetCategories} from './actions/categories'
 
 const store = configureStore()
-store.subscribe(() => {
-    console.log('in the index', store.getState())
-})
+// store.subscribe(() => {
+//     console.log('in the index', store.getState())
+// })
 
 // console.log(store.getState())
 if(localStorage.getItem('authToken')){

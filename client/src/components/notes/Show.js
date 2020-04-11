@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 function NotesShow(props) {
-    console.log('in the show of note', props)
+    // console.log('in the show of note', props)
     return (
         <div>
             <h2> Notes Show - {props.note && props.note.title} </h2>

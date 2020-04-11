@@ -21,7 +21,7 @@ import CategoryEdit from './components/categories/Edit'
 import {startRemoveUser} from './actions/users'
  
 function App(props) {
-    console.log(props)
+    // console.log(props)
     const handleLogout = () => {
         const token = localStorage.getItem('authToken')
         if(token) {
@@ -45,31 +45,32 @@ function App(props) {
                                 <React.Fragment> 
                                     
                                     <li className="nav-item active">
-                                        <a className="nav-link" ><Link to="/">Home</Link> </a>
-                                        {/* <button>Home</button> */}
+                                        <Link className="nav-link" to="/">Home</Link>
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link" href="/"><Link to="/notes"> Notes </Link> </a>
+                                        <Link className="nav-link" to="/notes"> Notes </Link>
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link" href="/"><Link to="/categories"> Categories </Link> </a>
+                                        <Link className="nav-link" to="/categories"> Categories </Link> 
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link float-right" href="/"><Link to="#" onClick={handleLogout}> Logout </Link> </a>
+                                        <Link className="nav-link float-right" to="#" onClick={handleLogout}> Logout </Link>
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link float-right" href="/"><Link to="/account"> Account </Link> </a>
+                                       <Link className="nav-link float-right" to="/account"> Account </Link>
                                     </li>
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
                                     <li className="nav-item active">
-                                        <a className="nav-link" href="/"><Link to="/"> Home </Link> </a>
+                                        <Link className="nav-link" to="/"> Home </Link>
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link" href="/"><Link to="/login"> Login </Link>  </a>
+                                        <Link className="nav-link" to="/login"> Login </Link> 
                                     </li>
-                                    
+                                    <li className="nav-item active">
+                                        <Link className="nav-link" to="/register"> Register </Link> 
+                                    </li>
                                 </React.Fragment>
                             )
                         }            

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 function CategoryShow(props) {
-    console.log(props.match.params.id, props)
+    // console.log(props.match.params.id, props)
     return(
         <div>
             <h2> Category - {props.category && props.category.name} </h2>

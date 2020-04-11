@@ -7,7 +7,7 @@ class CategoriesForm extends React.Component {
         this.state = {
             name: props.name ? props.name : ''
         }
-        console.log(props, 'hrere')
+        // console.log(props, 'hrere')
     }
     handleChange = (e) => {
         this.setState({ 

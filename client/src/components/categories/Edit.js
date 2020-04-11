@@ -4,9 +4,9 @@ import {connect} from 'react-redux'
 import {startEditcategory} from '../../actions/categories'
 
 function CategoryEdit(props) {
-    console.log(props.match.params.id)
+    // console.log(props.match.params.id)
     const handleSubmit = (category) => {
-        console.log('clicked', category)
+        // console.log('clicked', category)
         const redirect = () => props.history.push('/categories')
         props.dispatch(startEditcategory(props.category._id , category, redirect))
     }

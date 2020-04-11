@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom'
 import {startDeleteNote,startPinNote,startBinNote,startArchiveNote} from '../../actions/notes'
 
 function NotesList(props) {
-    console.log('in listing of notes',props.location.pathname)
+    // console.log('in listing of notes',props.location.pathname)
     const name = (props.location && props.location.pathname.split('/')[(props.location.pathname.split('/')).length - 1] )
-    console.log(name, 'here')
-    console.log('in the listing', props.categories)
+    // console.log(name, 'here')
+    // console.log('in the listing', props.categories)
     const handleClick = (id) => {
         props.dispatch(startDeleteNote(id))
     }

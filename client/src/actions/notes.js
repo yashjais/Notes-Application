@@ -36,14 +36,14 @@ export const startGetNotes = () => {
                 dispatch(getNotes(notes))
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
                 if(err.response) { // net::ERR_CONNECTION_REFUSED // err.response is undefined
                     if(err.response.status == 401) {
                         alert(err.response.status)
                         // console.log(window.location)
                         // console.log(window.history)
                         // if(window.location.pathname == '/login' ||  window.location.pathname == '/register') {
-                        //     console.log('happy hacking')
+                            // console.log('happy hacking')
                         // } else {
                         //     window.alert('You have to login First')
                         //     window.location.href = '/login'
@@ -71,7 +71,7 @@ export const startAddNote = (note, redirect) => {
                 redirect()
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }
@@ -90,7 +90,7 @@ export const startEditNote = (id, note, redirect) => {
                 redirect()
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }
@@ -103,7 +103,7 @@ export const startDeleteNote = (id) => {
             }
         })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch(deleteNote(id))
             }) 
     }
@@ -117,7 +117,7 @@ export const startBinNote = (id, note) => {
             }
         })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch(editNote(id, note))
             }) 
     }
@@ -131,7 +131,7 @@ export const startPinNote = (id, note) => {
             }
         })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch(editNote(id, note))
             }) 
     }
@@ -145,7 +145,7 @@ export const startArchiveNote = (id, note) => {
             }
         })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch(editNote(id, note))
             }) 
     }

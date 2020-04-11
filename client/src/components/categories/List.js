@@ -7,14 +7,14 @@ import {startDeleteCategory} from '../../actions/categories'
 
 function CategoriesList(props) {
     const handleSubmit = (cat) => {
-        console.log('clicked', cat)
+        // console.log('clicked', cat)
         props.dispatch(startAddCategory(cat))
     }
     const handleDelete = (id) => {
-        console.log(id)
+        // console.log(id)
         props.dispatch(startDeleteCategory(id))
     }
-    console.log('in listing of categories', props) 
+    // console.log('in listing of categories', props) 
     return (
         <div>
             <h2> Listing of Categories - {props.categories && props.categories.length} </h2>

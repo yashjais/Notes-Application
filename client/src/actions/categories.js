@@ -25,14 +25,14 @@ export const startSetCategories = () => {
         })
             .then(response => {
                 const categories = response.data
-                console.log(categories,'categories')
+                // console.log(categories,'categories')
                 dispatch(setCategories(categories))
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
                 if(err.response) { // net::ERR_CONNECTION_REFUSED // err.response is undefined
                     if(err.response.status == 401) {
-                        console.log(err.response.status)
+                        // console.log(err.response.status)
                         // console.log(err.response.status)
                         // console.log(window.location)
                         // if(window.location.href != '/login'){
@@ -56,11 +56,11 @@ export const startAddCategory = (category) => {
         })
             .then(response => {
                 const category = response.data
-                console.log(category, 'category')
+                // console.log(category, 'category')
                 dispatch(addCategory(category))
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }
@@ -77,7 +77,7 @@ export const startDeleteCategory = (id) => {
                 dispatch(deleteCategory(category._id))
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }
@@ -96,7 +96,7 @@ export const startEditcategory = (id, category, redirect) => {
                 redirect()
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }

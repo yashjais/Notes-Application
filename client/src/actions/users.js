@@ -22,23 +22,23 @@ export const startSetUser = (body, redirect) => {
     return (dispatch) => {
         axios.post('/users/register', body)
             .then(response => {
-                console.log(response.data, 'in the error of register')
+                // console.log(response.data, 'in the error of register')
                 if(response.data.hasOwnProperty('errors')) {
-                    console.log(response.data.errors)
+                    // console.log(response.data.errors)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
                         text: 'Validation failed',
                       })
                 } else if(response.data.hasOwnProperty('errmsg')) {
-                    console.log(response.data.errmsg)
+                    // console.log(response.data.errmsg)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
                         text: 'Enter another credentials',
                       })
                 } else {
-                    console.log(response.data, 'in else')
+                    // console.log(response.data, 'in else')
                     Swal.fire(
                     'Good job!',
                     'Successfully created account',
@@ -59,9 +59,9 @@ export const startGetUser = (user, redirect) => {
     return (dispatch) => {
         axios.post('/users/login', user)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 if(response.data.hasOwnProperty('errors')){
-                    console.log(response.data.message)
+                    // console.log(response.data.message)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
@@ -69,9 +69,9 @@ export const startGetUser = (user, redirect) => {
                       })
                 }else{
                     const user = response.data
-                    console.log(user, 'in the thunk action')
+                    // console.log(user, 'in the thunk action')
                     const token = response.data.token
-                    console.log(token)
+                    // console.log(token)
                     localStorage.setItem('authToken', token)
                     Swal.fire(
                         'Good job!',
@@ -102,7 +102,7 @@ export const startGetUserIndex = (token) => {
                 dispatch(setUser(user))
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
             })
     }
 }
@@ -115,7 +115,7 @@ export const startRemoveUser = (token, redirect) => {
             }
         })
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 localStorage.removeItem('authToken')
                 dispatch(removeUser())
                 redirect()
@@ -137,7 +137,7 @@ export const startForgotUser = (email, redirect) => {
                   redirect()
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',

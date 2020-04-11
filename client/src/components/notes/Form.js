@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 class Form extends React.Component {
     constructor(props) {
-        console.log('in the form constructor', props)
+        // console.log('in the form constructor', props)
         super(props)
         this.state = {
             title: props.title ? props.title : "",
@@ -11,7 +11,7 @@ class Form extends React.Component {
             category: props.name ? props.name : "",
             categories: props.categories,
         }
-        console.log('this.state', this.state)
+        // console.log('this.state', this.state)
     }
 
     // handleFileChange = (e) => {
@@ -62,7 +62,7 @@ class Form extends React.Component {
         if(formData.title.length < 3 || (formData.description && formData.description.length <3)){
             alert('title/description should be greater than 3 letters')
         } else {
-            console.log(formData)
+            // console.log(formData)
             this.props.handleSubmit(formData)
         }
         
@@ -89,7 +89,7 @@ class Form extends React.Component {
                             <textarea style={{height: '150px'}} className="form-control" type="text" value={this.state.description} id="description" name="description" onChange={this.handleChange} />  <br />
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="category">Category</label>
+                        <label htmlFor="category">Category</label>
                         <select onChange={this.handleCatChange} id="category" class="form-control">
                             <option value={this.props.category ? this.props.category._id : "select"}>
                                 {this.state.category ? this.state.category : "select"}</option>
@@ -110,7 +110,7 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('in the form mapStateToProps')
+    // console.log('in the form mapStateToProps')
     return {
         categories: state.categories
     }
