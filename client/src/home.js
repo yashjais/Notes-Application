@@ -1,17 +1,35 @@
-import React from 'react'
-import NotePic from './components/image/notes.png'
+import React, { useState } from 'react'
+import { UncontrolledCarousel } from 'reactstrap'
+import notePic from './components/image/notes.png'
+import textPic from './components/image/text.jpg'
 
-function Home(props) {
+const items = [
+    {
+        src: notePic,
+        altText: 'Notes Image',
+        caption: '',
+        header: '',
+        key: '1'
+    },
+    {
+        src: textPic,
+        altText: 'Slide 2',
+        caption: 'Slide 2',
+        header: 'Slide 2 Header',
+        key: '2'
+    }
+];
+
+const Home = () => {
     return (
-        <div style={{ textAlign: "center", fontSize: "20px" }} className="text-xl-center text-uppercase font-weight-bold" >
+        <div>
             <br />
+            <h2 style={{ textAlign: "center", fontSize: "20px" }} className="text-xl-center text-uppercase font-weight-bold" >Welcome to the
+        Notes Application</h2>
             <br />
-            Welcome to the Notes App <br />
-            <br />
-            <img src={NotePic} style={{ width: "100%" }} />
 
+            <UncontrolledCarousel items={items} />
         </div>
     )
 }
-
 export default Home
