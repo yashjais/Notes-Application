@@ -1,12 +1,15 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 function Account(props) {
     return (
         <div>
+            <br />
             <h2> User Info </h2>
-            <h3>username - {props.user && props.user.username}</h3>
-            <h3>email - {props.user && props.user.email}</h3>
+            <br />
+            <h3>Username - {props.user && props.user.username}</h3>
+            <br />
+            <h3>Email - {props.user && props.user.email}</h3>
         </div>
     )
 }
