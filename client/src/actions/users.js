@@ -2,11 +2,11 @@ import axios from '../config/axios'
 
 import Swal from 'sweetalert2'
 
-import {startGetNotes} from '../actions/notes'
-import {startSetCategories} from '../actions/categories'
+import { startGetNotes } from '../actions/notes'
+import { startSetCategories } from '../actions/categories'
 
 export const setUser = (user) => {
-    return { 
+    return {
         type: 'SET_USER', payload: user
     }
 }
@@ -23,26 +23,26 @@ export const startSetUser = (body, redirect) => {
         axios.post('/users/register', body)
             .then(response => {
                 // console.log(response.data, 'in the error of register')
-                if(response.data.hasOwnProperty('errors')) {
+                if (response.data.hasOwnProperty('errors')) {
                     // console.log(response.data.errors)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
                         text: 'Validation failed',
-                      })
-                } else if(response.data.hasOwnProperty('errmsg')) {
+                    })
+                } else if (response.data.hasOwnProperty('errmsg')) {
                     // console.log(response.data.errmsg)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
                         text: 'Enter another credentials',
-                      })
+                    })
                 } else {
                     // console.log(response.data, 'in else')
                     Swal.fire(
-                    'Good job!',
-                    'Successfully created account',
-                    'success'
+                        'Good job!',
+                        'Successfully created account',
+                        'success'
                     )
                     redirect()
                 }
@@ -50,7 +50,7 @@ export const startSetUser = (body, redirect) => {
             .catch(err => {
                 alert(err)
                 // console.log(err)
-            })      
+            })
     }
 }
 
@@ -60,14 +60,16 @@ export const startGetUser = (user, redirect) => {
         axios.post('/users/login', user)
             .then(response => {
                 // console.log(response.data)
-                if(response.data.hasOwnProperty('errors')){
+                if (response.data.hasOwnProperty('errors')) {
                     // console.log(response.data.message)
                     Swal.fire({
                         icon: 'error',
                         title: 'Please enter valid values',
                         text: 'Validation failed',
-                      })
-                }else{
+                    })
+                } else {
+                    // console.log(response)
+                    // console.log(response.data)
                     const user = response.data
                     // console.log(user, 'in the thunk action')
                     const token = response.data.token
@@ -85,7 +87,21 @@ export const startGetUser = (user, redirect) => {
                 }
             })
             .catch(err => {
-                alert(err)
+                // console.log(err.response)
+                if (err.response.data == "invalid email or password") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Please enter valid values',
+                        text: err.response.data,
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Please enter valid values',
+                        text: 'Validation failed',
+                    })
+
+                }
             })
     }
 }
@@ -111,7 +127,7 @@ export const startRemoveUser = (token, redirect) => {
     return (dispatch) => {
         axios.delete('/users/logout', {
             headers: {
-                'x-auth':token
+                'x-auth': token
             }
         })
             .then(response => {
@@ -126,15 +142,15 @@ export const startRemoveUser = (token, redirect) => {
 
 export const startForgotUser = (email, redirect) => {
     return dispatch => {
-        axios.post('/users/forgot-password', {email})
+        axios.post('/users/forgot-password', { email })
             .then(response => {
                 // if invalid user - // user does not found
                 Swal.fire({
                     icon: 'success',
                     title: 'User Found',
                     text: 'The link has been sent to Registered User Id',
-                  })
-                  redirect()
+                })
+                redirect()
             })
             .catch(err => {
                 // console.log(err)
@@ -142,7 +158,7 @@ export const startForgotUser = (email, redirect) => {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'User not Found',
-                  })
+                })
             })
     }
 }

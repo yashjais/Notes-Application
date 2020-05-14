@@ -13,9 +13,9 @@ const items = [
     },
     {
         src: textPic,
-        altText: 'Slide 2',
-        caption: 'Slide 2',
-        header: 'Slide 2 Header',
+        altText: 'Text',
+        caption: '',
+        header: '',
         key: '2'
     }
 ];
