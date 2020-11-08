@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.4.1",
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
